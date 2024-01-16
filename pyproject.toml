@@ -21,6 +21,7 @@ dependencies = [
   "mkdocs",
   "mkdocs-dracula-theme",
   "jupyterlite-core",
+  "numpy",
 ]
 
 [project.urls]
