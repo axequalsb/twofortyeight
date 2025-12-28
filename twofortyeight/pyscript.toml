@@ -4,7 +4,7 @@ name = "TwoFortyEight"
 "./assets/00002.png" = ""
 
 # Install packages to be used in this project
-# packages = ["pandas"]
+# packages = ["numpy"]
 
 # Bundle your project into a zip file which can be downloaded or used
 # as a module in your Anaconda Toolbox Excel Add-in

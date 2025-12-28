@@ -8,9 +8,9 @@ version = "0.0.1"
 authors = [
   { name="Melissa Mendonça", email="melissawm@gmail.com" },
 ]
-description = "2048 game implemented in Textual Web"
+description = "2048 game implemented in PyScript using pygame-ce"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.13"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GPLv3 License",

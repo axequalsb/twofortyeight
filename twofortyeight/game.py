@@ -1,5 +1,6 @@
 import asyncio
 import pygame
+import random
 
 
 def clear_screen():
@@ -28,7 +29,23 @@ clear_screen()
 clock = pygame.time.Clock()
 running = True
 
-player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+# player_pos must be one of the empty tiles, chosen at random
+rx, ry = random.randint(0, 4), random.randint(0, 4)
+player_pos = pygame.Vector2(rx * screen.get_width() / 5, ry * screen.get_height() / 5)
+
+tiles = {
+    "two": "00002.png",
+    "four": "00004.png",
+    "eight": "00008.png",
+    "sixteen": "00016.png",
+    # "thirty_two": "00032.png",
+    # "sixty_four": "00064.png",
+    # "one_twenty_eight": "00128.png",
+    # "two_fifty_six": "00256.png",
+    # "five_twelve": "00512.png",
+    # "one_zero_two_four": "01024.png",
+    # "two_zero_four_eight": "02048.png",
+}
 
 while running:
     # poll for events
@@ -40,7 +57,9 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     clear_screen()
 
-    pygame.draw.circle(screen, "red", player_pos, 40)
+    # spawn a new tile at a random position in the grid
+    spawn = pygame.image.load(tiles["two"])
+    screen.blit(spawn, (player_pos.x, player_pos.y))
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP]:
@@ -55,8 +74,5 @@ while running:
     # flip() the display to put your work on screen
     pygame.display.flip()
 
-    # limits FPS to 60
-    # dt is delta time in seconds since last frame, used for framerate-
-    # independent physics.
-    #dt = clock.tick(60) / 1000
+    # This is for PyScript compatibility
     await asyncio.sleep(1 / 60)

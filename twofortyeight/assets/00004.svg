@@ -2,16 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="77"
-   height="77"
-   viewBox="0 0 20.372914 20.372914"
+   width="30mm"
+   height="30mm"
+   viewBox="0 0 30 30"
    version="1.1"
    id="svg1"
    inkscape:export-filename="00002.png"
    inkscape:export-xdpi="144"
    inkscape:export-ydpi="144"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
-   sodipodi:docname="00002.svg"
+   sodipodi:docname="00004.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,10 +25,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="px"
+     inkscape:document-units="mm"
      inkscape:zoom="4.2038601"
      inkscape:cx="59.469153"
-     inkscape:cy="29.615638"
+     inkscape:cy="58.636585"
      inkscape:window-width="1684"
      inkscape:window-height="1052"
      inkscape:window-x="0"
@@ -40,36 +40,35 @@
   <g
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(1.910381e-7,-0.12587631)">
+     id="layer1">
     <rect
-       style="fill:#ffff80;fill-opacity:1;stroke-width:3.11328"
+       style="fill:#80ffea;stroke-width:0.264583;fill-opacity:1"
        id="rect1"
-       width="26.486572"
-       height="26.347866"
-       x="-2.0769601"
-       y="-1.4475782" />
+       width="32.664917"
+       height="31.720846"
+       x="-1.4475783"
+       y="-0.62938184" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffff80;fill-opacity:1;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.22222222px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffff80;fill-opacity:1;stroke-width:0.264583"
        x="15.05082"
        y="24.423407"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="font-size:28.2222px;fill:#020200;fill-opacity:1;stroke-width:0.264583"
+         style="fill:#020200;fill-opacity:1;stroke-width:0.264583;font-size:28.22222222px"
          x="15.05082"
          y="24.423407" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       x="10.203397"
-       y="16.18819"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2223px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#020200;fill-opacity:1;stroke-width:0.264583"
+       x="15.056467"
+       y="25.470482"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:16.9333px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman Light';fill:#ffffff;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-         x="10.203397"
-         y="16.18819">2</tspan></text>
+         style="stroke-width:0.264583"
+         x="15.056467"
+         y="25.470482">4</tspan></text>
   </g>
 </svg>
