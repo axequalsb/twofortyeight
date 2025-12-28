@@ -1,0 +1,18 @@
+[project]
+site_name = "TwoFortyEight"
+docs_dir = "twofortyeight"
+extra_css = [
+  "https://pyscript.net/releases/2025.11.2/core.css",
+  "stylesheets/custom.css",
+  "stylesheets/dracula-ui.min.css",
+]
+
+[[project.extra_javascript]]
+path = "https://pyscript.net/releases/2025.11.2/core.js"
+type = "module"
+
+[project.theme]
+custom_dir = "twofortyeight/overrides"
+features = [
+    "navigation.tabs"
+]

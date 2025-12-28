@@ -1,9 +1,6 @@
 # 2048
 
-Hello!
+High score: 0
 
-<!-- <iframe
-  src="https://melissawm.github.io/twofortyeight/repl/index.html?kernel=python?theme=JupyterLab Dark&code=import numpy as np"
-  width="100%"
-  height="100%"
-></iframe> -->
+<canvas id="canvas" style="image-rendering: pixelated"></canvas>
+<script type="py-game" src="./game.py" config="./pyscript.toml"></script>

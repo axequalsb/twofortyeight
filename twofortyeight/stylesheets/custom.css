@@ -1,0 +1,29 @@
+:root {
+    --bg-purple: #9580ff;
+    --bg-blue: #80ffea;
+    --bg-green: #8aff80;
+    --bg-orange: #ffca80;
+    --bg-red: #ff9580;
+    --bg-pink: #ff80bf;
+    --bg-yellow: #ffff80;
+    --bg-gray: #414558;
+    --md-default-fg-color: white;
+    --md-default-bg-color: black;
+    --md-default-fg-color--light: white;
+    --md-accent-fg-color: var(--bg-purple);
+}
+
+html, body {
+    background-color: var(--bg-gray);
+    color: white;
+}
+
+.md-header {
+    background: linear-gradient(90deg, var(--bg-purple), var(--bg-blue), var(--bg-green));
+    color: white;
+}
+
+.md-tabs {
+    background: black;
+    color: white;
+}

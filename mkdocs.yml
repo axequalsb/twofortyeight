@@ -1,7 +1,0 @@
-site_name: TwoFortyEight
-
-theme:
-  name: dracula
-  custom_dir: _templates
-
-docs_dir: twofortyeight

@@ -17,13 +17,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-  "textual",
-  "mkdocs",
-  "mkdocs-dracula-theme",
-  "jupyterlite-core",
-  "numpy",
+  "pygame-ce",
+  "zensical",
 ]
 
 [project.urls]
 Homepage = "https://github.com/axequalsb/twofortyeight"
-Issues = "https://github.com/melissawm/twofortyeight"
+Issues = "https://github.com/axequalsb/twofortyeight"
