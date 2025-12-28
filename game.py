@@ -122,7 +122,7 @@ while running:
     pygame.display.flip()
 
     # This is for PyScript compatibility
-    #await asyncio.sleep(1 / 60)
-    clock.tick(60)
+    await asyncio.sleep(1 / 60)
+    #clock.tick(60)
 
 pygame.quit()
