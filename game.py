@@ -75,7 +75,7 @@ clock = pygame.time.Clock()
 running = True
 
 default_tiles = {
-    "two": "./twofortyeight/assets/00002.png",
+    "two": "./00002.png",
     "four": "./twofortyeight/assets/00004.png",
     "eight": "./twofortyeight/assets/00008.png",
     "sixteen": "./twofortyeight/assets/00016.png",
