@@ -24,7 +24,7 @@ class Tile(pygame.sprite.Sprite):
     def __init__(self, value, position=None):
         super().__init__()
         self.value = value
-        self.image = pygame.image.load("./twofortyeight/assets/00002.png").convert_alpha()
+        self.image = pygame.image.load("./00002.png").convert_alpha()
         self.rect = self.image.get_rect()
 
         # position is a grid coordinate (col, row)
