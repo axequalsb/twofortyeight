@@ -1,7 +1,7 @@
 name = "TwoFortyEight"
 
 [files]
-"./assets/00002.png" = ""
+"./twofortyeight/assets/00002.png" = ""
 
 # Install packages to be used in this project
 # packages = ["numpy"]

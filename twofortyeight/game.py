@@ -76,9 +76,9 @@ running = True
 
 default_tiles = {
     "two": "./00002.png",
-    "four": "./twofortyeight/assets/00004.png",
-    "eight": "./twofortyeight/assets/00008.png",
-    "sixteen": "./twofortyeight/assets/00016.png",
+    # "four": "./twofortyeight/assets/00004.png",
+    # "eight": "./twofortyeight/assets/00008.png",
+    # "sixteen": "./twofortyeight/assets/00016.png",
     # "thirty_two": "./twofortyeight/assets/00032.png",
     # "sixty_four": "./twofortyeight/assets/00064.png",
     # "one_twenty_eight": "./twofortyeight/assets/00128.png",
