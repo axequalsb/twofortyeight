@@ -2,6 +2,7 @@ import asyncio
 import pygame
 import random
 import logging
+import sys
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -191,5 +192,11 @@ def main(n=5):
 
     pygame.quit()
 
-if __name__ == "__main__":
+async def run_game():
     main(5)
+
+try:
+    asyncio.get_running_loop()
+    asyncio.create_task(run_game())
+except RuntimeError:
+    asyncio.run(run_game())
