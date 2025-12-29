@@ -29,7 +29,7 @@
      inkscape:zoom="4.2038601"
      inkscape:cx="59.469153"
      inkscape:cy="58.636585"
-     inkscape:window-width="1684"
+     inkscape:window-width="1876"
      inkscape:window-height="1052"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -42,7 +42,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#80ffea;stroke-width:0.264583;fill-opacity:1"
+       style="fill:#8aff80;stroke-width:0.264583;fill-opacity:1"
        id="rect1"
        width="32.664917"
        height="31.720846"
@@ -62,13 +62,13 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2223px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#020200;fill-opacity:1;stroke-width:0.264583"
-       x="15.056467"
-       y="25.470482"
+       x="15.141115"
+       y="25.308184"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
-         style="stroke-width:0.264583"
-         x="15.056467"
-         y="25.470482">4</tspan></text>
+         style="fill:#414558;fill-opacity:1;stroke-width:0.264583"
+         x="15.141115"
+         y="25.308184">4</tspan></text>
   </g>
 </svg>

@@ -1,128 +1,195 @@
 import asyncio
 import pygame
 import random
+import logging
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 class Grid(pygame.sprite.Group):
     """The grid in the 2048 game.
 
-    It is a 5x5 grid of Tile sprites."""
-    def __init__(self):
-        self.grid = [[None for _ in range(5)] for _ in range(5)]
+    It is a nxn grid of Tile sprites."""
+    def __init__(self, n=5):
+        self.grid = [[None for _ in range(n)] for _ in range(n)]
         self.tiles = []
+        self.n = n
         super().__init__()
 
     def get_empty_pos(self):
-        empty_positions = [(x, y) for y in range(5) for x in range(5) if self.grid[y][x] is None]
+        """Get a random empty position in the grid."""
+        empty_positions = [(x, y) for y in range(self.n) for x in range(self.n) if self.grid[x][y] is None]
+        logger.debug(f"Empty positions: {len(empty_positions)}")
         if not empty_positions:
             return None
         return random.choice(empty_positions)
 
+    def add(self, tile=None):
+        """Add a tile to the grid."""
+        # The Group __init__ calls add, so we add tile=None to our add method
+        if tile is not None:
+            super().add(tile)
+            row, col = tile.coords
+            self.grid[row][col] = tile.value
+
 
 class Tile(pygame.sprite.Sprite):
     """A tile in the 2048 game."""
-    def __init__(self, value, position=None):
+    def __init__(self, value, position=None, rect_size=0):
         super().__init__()
         self.value = value
-        self.image = pygame.image.load("./00002.png").convert_alpha()
+        self.image = pygame.image.load(f"./0000{value}.png").convert_alpha()
         self.rect = self.image.get_rect()
+        self.rect_size = rect_size
 
         # position is a grid coordinate (col, row)
-        col, row = (0, 0) if position is None else position
-        self.rect.topleft = (col * RECT_SIZE, row * RECT_SIZE)
+        row, col = (0, 0) if position is None else position
+        self.rect.topleft = (col * rect_size, row * rect_size)
+        self.coords = (row, col)
 
+    def _new_coords(self, axis, index, current):
+        """Calculate new coordinates for the tile based on movement direction.
+
+        Returns the minimum empty index of this axis.
+        If there's no empty space, stay in the same position
+        """
+        logger.debug(f"Axis: {axis}")
+        logger.debug(f"Index: {index}")
+        move = False
+        for i in index:
+            if axis[i] is None:
+                move = True
+                break
+        if move:
+            logger.debug(f"Moving from {current} to {i}")
+            return i, self.value
+        logger.debug(f"Staying at {current}")
+        return current, self.value
 
     def update(self, position=None):
         """Update the tile's position on the screen."""
         if position is None:
             return
         else:
+            # Clear out current tile's position
+            logger.debug(f"Updating tile {self.value} at {self.coords} moving {position}")
+            game = self.groups()[0]
             if position == "up":
-                col, row = (self.rect.x // RECT_SIZE, max(0, self.rect.y // RECT_SIZE - 1))
+                col = self.coords[1]
+                row, value = self._new_coords([game.grid[i][col] for i in range(game.n)], range(self.coords[0]), self.coords[0])
             elif position == "down":
-                col, row = (self.rect.x // RECT_SIZE, min(4, self.rect.y // RECT_SIZE + 1))
+                col = self.coords[1]
+                row, value = self._new_coords([game.grid[i][col] for i in range(game.n)], range(game.n-1, self.coords[0], -1), self.coords[0])
             elif position == "left":
-                col, row = (max(0, self.rect.x // RECT_SIZE - 1), self.rect.y // RECT_SIZE)
+                row = self.coords[0]
+                col, value = self._new_coords(game.grid[row][:], range(self.coords[1]), self.coords[1])
             elif position == "right":
-                col, row = (min(4, self.rect.x // RECT_SIZE + 1), self.rect.y // RECT_SIZE)
-            self.rect.topleft = (col * RECT_SIZE, row * RECT_SIZE)
+                row = self.coords[0]
+                col, value = self._new_coords(game.grid[row][:], range(game.n-1, self.coords[1], -1), self.coords[1])
+            # Set new position
+            game.grid[self.coords[0]][self.coords[1]] = None
+            game.grid[row][col] = self.value
+            self.rect.topleft = (col * self.rect_size, row * self.rect_size)
+            self.coords = (row, col)
+            self.value = value
 
 
-def clear_screen():
+def clear_screen(screen, n=5):
     """Clear the screen and draw the grid lines."""
-    screen.fill("#414558")
-    pygame.draw.rect(screen, border_color, (0, 0, WIDTH, HEIGHT), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, RECT_SIZE, HEIGHT), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, 2 * RECT_SIZE, HEIGHT), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, 3 * RECT_SIZE, HEIGHT), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, 4 * RECT_SIZE, HEIGHT), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, WIDTH, RECT_SIZE), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, WIDTH, 2 * RECT_SIZE), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, WIDTH, 3 * RECT_SIZE), border_width)
-    pygame.draw.rect(screen, border_color, (0, 0, WIDTH, 4 * RECT_SIZE), border_width)
 
-# pygame setup
-pygame.init()
-WIDTH, HEIGHT = 600, 600
-RECT_SIZE = 600 / 5
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("2048 Game")
+    border_color = (255, 255, 255)
+    border_width = 5
+    screen_background = "#414558"
+    screen.fill(screen_background)
 
-border_color = (255, 255, 255)
-border_width = 5
+    width, height = screen.get_size()
+    rect_size = width // n
 
-clock = pygame.time.Clock()
-running = True
+    pygame.draw.rect(screen, border_color, (0, 0, width, height), border_width)
+    pygame.draw.rect(screen, border_color, (0, 0, rect_size, height), border_width)
+    pygame.draw.rect(screen, border_color, (0, 0, width, rect_size), border_width)
+    for i in range(1, n):
+        pygame.draw.rect(screen, border_color, (0, 0, i * rect_size, height), border_width)
+        pygame.draw.rect(screen, border_color, (0, 0, width, i * rect_size), border_width)
 
-default_tiles = {
-    "two": "./00002.png",
-    # "four": "./twofortyeight/assets/00004.png",
-    # "eight": "./twofortyeight/assets/00008.png",
-    # "sixteen": "./twofortyeight/assets/00016.png",
-    # "thirty_two": "./twofortyeight/assets/00032.png",
-    # "sixty_four": "./twofortyeight/assets/00064.png",
-    # "one_twenty_eight": "./twofortyeight/assets/00128.png",
-    # "two_fifty_six": "./twofortyeight/assets/00256.png",
-    # "five_twelve": "./twofortyeight/assets/00512.png",
-    # "one_zero_two_four": "./twofortyeight/assets/01024.png",
-    # "two_zero_four_eight": "./twofortyeight/assets/02048.png",
-}
+    return rect_size
 
-grid = Grid()
-while running:
-    # fill the screen with a color to wipe away anything from last frame
-    clear_screen()
+
+def main(n=5):
+    # pygame setup
+    pygame.init()
+    screen = pygame.display.set_mode((600, 600))
+    pygame.display.set_caption("2048 Game")
+
+    clock = pygame.time.Clock()
+    running = True
+
+    default_tiles = {
+        "2": "./00002.png",
+        "4": "./00004.png",
+        # "8": "./twofortyeight/assets/00008.png",
+        # "16": "./twofortyeight/assets/00016.png",
+        # "32": "./twofortyeight/assets/00032.png",
+        # "64": "./twofortyeight/assets/00064.png",
+        # "128": "./twofortyeight/assets/00128.png",
+        # "256": "./twofortyeight/assets/00256.png",
+        # "512": "./twofortyeight/assets/00512.png",
+        # "1024": "./twofortyeight/assets/01024.png",
+        # "2048": "./twofortyeight/assets/02048.png",
+    }
+
+    grid = Grid(n)
+    rect_size = clear_screen(screen, n)
     grid.draw(screen)
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            # Spawn a new tile at a random position in the grid
-            # If no empty positions are available, the game is over
-            new_pos = grid.get_empty_pos()
-            if new_pos is None:
-                print("Game Over!")
+    new_pos = grid.get_empty_pos()
+    grid.add(Tile(2, new_pos, rect_size))
+    logger.debug(f"Added tile at position {new_pos}")
+    grid.tiles.append(grid.sprites()[-1])
+    screen.blit(grid.tiles[-1].image, (grid.tiles[-1].rect.x, grid.tiles[-1].rect.y))
+    logger.debug(grid.grid)
+    while running:
+        # fill the screen with a color to wipe away anything from last frame
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 running = False
-            else:
-                grid.add(Tile("two", new_pos))
-                grid.tiles.append(grid.sprites()[-1])
-            screen.blit(grid.tiles[-1].image, (grid.tiles[-1].rect.x, grid.tiles[-1].rect.y))
-            if event.key == pygame.K_UP:
-                grid.update(position="up")
-            elif event.key == pygame.K_DOWN:
-                grid.update(position="down")
-            elif event.key == pygame.K_LEFT:
-                grid.update(position="left")
-            elif event.key == pygame.K_RIGHT:
-                grid.update(position="right")
+            if event.type == pygame.KEYDOWN:
+                logger.debug("MOVEMENT")
+                if event.key == pygame.K_UP:
+                    grid.update(position="up")
+                elif event.key == pygame.K_DOWN:
+                    grid.update(position="down")
+                elif event.key == pygame.K_LEFT:
+                    grid.update(position="left")
+                elif event.key == pygame.K_RIGHT:
+                    grid.update(position="right")
+                logger.debug("After update:")
+                logger.debug(grid.grid)
+                # Spawn a new tile at a random position in the grid
+                # If no empty positions are available, the game is over
+                new_pos = grid.get_empty_pos()
+                logger.debug(f"New position for tile: {new_pos}")
+                if new_pos is None:
+                    logger.debug("Game Over!")
+                    running = False
+                else:
+                    grid.add(Tile(2, new_pos, rect_size))
+                    logger.debug(f"Added tile at position {new_pos}")
+                    grid.tiles.append(grid.sprites()[-1])
+                rect_size = clear_screen(screen, n)
+                grid.draw(screen)
+                screen.blit(
+                    grid.tiles[-1].image, (grid.tiles[-1].rect.x, grid.tiles[-1].rect.y)
+                )
+                logger.debug(grid.grid)
 
-    # flip() the display to put your work on screen
-    pygame.display.flip()
+        # flip() the display to put your work on screen
+        pygame.display.flip()
 
-    # This is for PyScript compatibility
-    await asyncio.sleep(1 / 60)
-    #clock.tick(60)
+        # This is for PyScript compatibility
+        await asyncio.sleep(1 / 60)
+        #clock.tick(60)
 
-pygame.quit()
+    pygame.quit()
+
+if __name__ == "__main__":
+    main(5)
