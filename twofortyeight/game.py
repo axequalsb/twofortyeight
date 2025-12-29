@@ -14,7 +14,6 @@ class Grid(pygame.sprite.Group):
         self.grid = [[None for _ in range(n)] for _ in range(n)]
         self.tiles = []
         self.n = n
-        # The Group __init__ calls add, so we add tile=None to our add method
         super().__init__()
 
     def get_empty_pos(self):
@@ -27,6 +26,7 @@ class Grid(pygame.sprite.Group):
 
     def add(self, tile=None):
         """Add a tile to the grid."""
+        # The Group __init__ calls add, so we add tile=None to our add method
         if tile is not None:
             super().add(tile)
             row, col = tile.coords
@@ -62,9 +62,9 @@ class Tile(pygame.sprite.Sprite):
                 break
         if move:
             logger.debug(f"Moving from {current} to {i}")
-            return i
+            return i, self.value
         logger.debug(f"Staying at {current}")
-        return current
+        return current, self.value
 
     def update(self, position=None):
         """Update the tile's position on the screen."""
@@ -76,21 +76,22 @@ class Tile(pygame.sprite.Sprite):
             game = self.groups()[0]
             if position == "up":
                 col = self.coords[1]
-                row = self._new_coords([game.grid[i][col] for i in range(game.n)], range(self.coords[0]), self.coords[0])
+                row, value = self._new_coords([game.grid[i][col] for i in range(game.n)], range(self.coords[0]), self.coords[0])
             elif position == "down":
                 col = self.coords[1]
-                row = self._new_coords([game.grid[i][col] for i in range(game.n)], range(game.n-1, self.coords[0], -1), self.coords[0])
+                row, value = self._new_coords([game.grid[i][col] for i in range(game.n)], range(game.n-1, self.coords[0], -1), self.coords[0])
             elif position == "left":
                 row = self.coords[0]
-                col = self._new_coords(game.grid[row][:], range(self.coords[1]), self.coords[1])
+                col, value = self._new_coords(game.grid[row][:], range(self.coords[1]), self.coords[1])
             elif position == "right":
                 row = self.coords[0]
-                col = self._new_coords(game.grid[row][:], range(game.n-1, self.coords[1], -1), self.coords[1])
+                col, value = self._new_coords(game.grid[row][:], range(game.n-1, self.coords[1], -1), self.coords[1])
             # Set new position
             game.grid[self.coords[0]][self.coords[1]] = None
             game.grid[row][col] = self.value
             self.rect.topleft = (col * self.rect_size, row * self.rect_size)
             self.coords = (row, col)
+            self.value = value
 
 
 def clear_screen(screen, n=5):
@@ -125,7 +126,7 @@ def main(n=5):
 
     default_tiles = {
         "2": "./00002.png",
-        # "4": "./twofortyeight/assets/00004.png",
+        "4": "./00004.png",
         # "8": "./twofortyeight/assets/00008.png",
         # "16": "./twofortyeight/assets/00016.png",
         # "32": "./twofortyeight/assets/00032.png",
