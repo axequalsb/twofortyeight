@@ -1,8 +1,10 @@
 import asyncio
 import pygame
 import random
-import pprint
+import logging
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 class Grid(pygame.sprite.Group):
     """The grid in the 2048 game.
@@ -18,7 +20,7 @@ class Grid(pygame.sprite.Group):
     def get_empty_pos(self):
         """Get a random empty position in the grid."""
         empty_positions = [(x, y) for y in range(self.n) for x in range(self.n) if self.grid[x][y] is None]
-        print(f"Empty positions: {len(empty_positions)}")
+        logger.debug(f"Empty positions: {len(empty_positions)}")
         if not empty_positions:
             return None
         return random.choice(empty_positions)
@@ -51,17 +53,17 @@ class Tile(pygame.sprite.Sprite):
         Returns the minimum empty index of this axis.
         If there's no empty space, stay in the same position
         """
-        print("Axis: ", axis)
-        print("Index: ", index)
+        logger.debug(f"Axis: {axis}")
+        logger.debug(f"Index: {index}")
         move = False
         for i in index:
             if axis[i] is None:
                 move = True
                 break
         if move:
-            print(f"Moving from {current} to {i}")
+            logger.debug(f"Moving from {current} to {i}")
             return i
-        print(f"Staying at {current}")
+        logger.debug(f"Staying at {current}")
         return current
 
     def update(self, position=None):
@@ -70,7 +72,7 @@ class Tile(pygame.sprite.Sprite):
             return
         else:
             # Clear out current tile's position
-            print(f"Updating tile {self.value} at {self.coords} moving {position}")
+            logger.debug(f"Updating tile {self.value} at {self.coords} moving {position}")
             game = self.groups()[0]
             if position == "up":
                 col = self.coords[1]
@@ -140,17 +142,17 @@ def main(n=5):
     grid.draw(screen)
     new_pos = grid.get_empty_pos()
     grid.add(Tile(2, new_pos, rect_size))
-    print(f"Added tile at position {new_pos}")
+    logger.debug(f"Added tile at position {new_pos}")
     grid.tiles.append(grid.sprites()[-1])
     screen.blit(grid.tiles[-1].image, (grid.tiles[-1].rect.x, grid.tiles[-1].rect.y))
-    pprint.pprint(grid.grid)
+    logger.debug(grid.grid)
     while running:
         # fill the screen with a color to wipe away anything from last frame
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.KEYDOWN:
-                print("MOVEMENT")
+                logger.debug("MOVEMENT")
                 if event.key == pygame.K_UP:
                     grid.update(position="up")
                 elif event.key == pygame.K_DOWN:
@@ -159,25 +161,25 @@ def main(n=5):
                     grid.update(position="left")
                 elif event.key == pygame.K_RIGHT:
                     grid.update(position="right")
-                print("After update:")
-                pprint.pprint(grid.grid)
+                logger.debug("After update:")
+                logger.debug(grid.grid)
                 # Spawn a new tile at a random position in the grid
                 # If no empty positions are available, the game is over
                 new_pos = grid.get_empty_pos()
-                print(f"New position for tile: {new_pos}")
+                logger.debug(f"New position for tile: {new_pos}")
                 if new_pos is None:
-                    print("Game Over!")
+                    logger.debug("Game Over!")
                     running = False
                 else:
                     grid.add(Tile(2, new_pos, rect_size))
-                    print(f"Added tile at position {new_pos}")
+                    logger.debug(f"Added tile at position {new_pos}")
                     grid.tiles.append(grid.sprites()[-1])
                 rect_size = clear_screen(screen, n)
                 grid.draw(screen)
                 screen.blit(
                     grid.tiles[-1].image, (grid.tiles[-1].rect.x, grid.tiles[-1].rect.y)
                 )
-                pprint.pprint(grid.grid)
+                logger.debug(grid.grid)
 
         # flip() the display to put your work on screen
         pygame.display.flip()
@@ -189,4 +191,4 @@ def main(n=5):
     pygame.quit()
 
 if __name__ == "__main__":
-    main(3)
+    main(5)
