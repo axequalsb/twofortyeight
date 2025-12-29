@@ -190,8 +190,6 @@ async def main(n=5):
         await asyncio.sleep(1 / 60)
         #clock.tick(60)
 
-    pygame.quit()
-
 try:
     asyncio.get_running_loop()
     asyncio.create_task(main(5))
