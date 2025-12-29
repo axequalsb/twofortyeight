@@ -116,7 +116,7 @@ def clear_screen(screen, n=5):
     return rect_size
 
 
-def main(n=5):
+async def main(n=5):
     # pygame setup
     pygame.init()
     screen = pygame.display.set_mode((600, 600))
@@ -192,11 +192,8 @@ def main(n=5):
 
     pygame.quit()
 
-async def run_game():
-    main(5)
-
 try:
     asyncio.get_running_loop()
-    asyncio.create_task(run_game())
+    asyncio.create_task(main(5))
 except RuntimeError:
-    asyncio.run(run_game())
+    asyncio.run(main(5))
