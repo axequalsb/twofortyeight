@@ -38,7 +38,7 @@ class Tile(pygame.sprite.Sprite):
     def __init__(self, value, position=None, rect_size=0):
         super().__init__()
         self.value = value
-        self.image = pygame.image.load(f"./assets/0000{value}.png").convert_alpha()
+        self.image = pygame.image.load(f"./0000{value}.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.rect_size = rect_size
 
@@ -186,8 +186,8 @@ def main(n=5):
         pygame.display.flip()
 
         # This is for PyScript compatibility
-        #await asyncio.sleep(1 / 60)
-        clock.tick(60)
+        await asyncio.sleep(1 / 60)
+        #clock.tick(60)
 
     pygame.quit()
 
