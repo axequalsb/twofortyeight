@@ -18,6 +18,12 @@ html, body {
     color: white;
 }
 
+.h3#game-over {
+    color: red;
+    font-size: 2em;
+    font-weight: bold;
+}
+
 .md-header {
     background: linear-gradient(90deg, var(--bg-purple), var(--bg-blue), var(--bg-green));
     color: white;
@@ -26,4 +32,8 @@ html, body {
 .md-tabs {
     background: black;
     color: white;
+}
+
+canvas .game-canvas {
+    width: 100% !important;
 }

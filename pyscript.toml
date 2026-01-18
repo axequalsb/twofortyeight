@@ -2,6 +2,16 @@ name = "TwoFortyEight"
 
 [files]
 "./assets/00002.png" = ""
+"./assets/00004.png" = ""
+"./assets/00008.png" = ""
+"./assets/00016.png" = ""
+"./assets/00032.png" = ""
+"./assets/00064.png" = ""
+"./assets/00128.png" = ""
+"./assets/00256.png" = ""
+"./assets/00512.png" = ""
+"./assets/01024.png" = ""
+"./assets/02048.png" = ""
 
 # Install packages to be used in this project
 # packages = ["numpy"]

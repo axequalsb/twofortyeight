@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="30mm"
-   height="30mm"
-   viewBox="0 0 30 30"
+   width="77"
+   height="77"
+   viewBox="0 0 20.372915 20.372915"
    version="1.1"
    id="svg1"
-   inkscape:export-filename="00002.png"
+   inkscape:export-filename="00004.png"
    inkscape:export-xdpi="144"
    inkscape:export-ydpi="144"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
@@ -26,10 +26,10 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="4.2038601"
-     inkscape:cx="59.469153"
-     inkscape:cy="58.636585"
-     inkscape:window-width="1876"
+     inkscape:zoom="5.945156"
+     inkscape:cx="47.685881"
+     inkscape:cy="55.086864"
+     inkscape:window-width="1684"
      inkscape:window-height="1052"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -42,33 +42,33 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#8aff80;stroke-width:0.264583;fill-opacity:1"
+       style="fill:#8aff80;fill-opacity:1;stroke-width:0.172526"
        id="rect1"
-       width="32.664917"
-       height="31.720846"
-       x="-1.4475783"
-       y="-0.62938184" />
+       width="21.08429"
+       height="20.895479"
+       x="-0.37762913"
+       y="-0.2517527" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.22222222px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffff80;fill-opacity:1;stroke-width:0.264583"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2222px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#ffff80;fill-opacity:1;stroke-width:0.264583"
        x="15.05082"
        y="24.423407"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
-         style="fill:#020200;fill-opacity:1;stroke-width:0.264583;font-size:28.22222222px"
+         style="font-size:28.2222px;fill:#020200;fill-opacity:1;stroke-width:0.264583"
          x="15.05082"
          y="24.423407" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:28.2223px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#020200;fill-opacity:1;stroke-width:0.264583"
-       x="15.141115"
-       y="25.308184"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:'Monaspace Xenon';-inkscape-font-specification:'Monaspace Xenon';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#020200;fill-opacity:1;stroke-width:0.264583"
+       x="10.144133"
+       y="15.952245"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
-         style="fill:#414558;fill-opacity:1;stroke-width:0.264583"
-         x="15.141115"
-         y="25.308184">4</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:'URW Bookman';-inkscape-font-specification:'URW Bookman';fill:#414558;fill-opacity:1;stroke-width:0.264583"
+         x="10.144133"
+         y="15.952245">4</tspan></text>
   </g>
 </svg>
